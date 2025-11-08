@@ -1,191 +1,170 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <meta charset="UTF-8">
-    <title>MyWebsite</title>
+<meta charset="UTF-8">
+<title>Physics Academy</title>
 
-    <!-- ฟอนต์สวย -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
 
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+<style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+        font-family: Poppins, sans-serif;
+        background: #f5f5f5;
+    }
 
-        body {
-            font-family: 'Poppins', sans-serif;
-            background: #f0f2f5;
-            color: #333;
-        }
+    /* ✅ หน้าจอ */
+    .page { display: none; padding: 40px 20px; text-align: center; }
+    .show { display: block; }
 
-        /* ✅ Navbar แบบลอย */
-        nav {
-            position: fixed;
-            top: 15px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 90%;
-            background: rgba(0, 0, 0, 0.65);
-            backdrop-filter: blur(12px);
-            border-radius: 15px;
-            padding: 15px 30px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            color: white;
-            z-index: 100;
-        }
+    /* ✅ ปุ่ม */
+    button {
+        margin-top: 20px;
+        padding: 15px 30px;
+        font-size: 18px;
+        border: none;
+        background: #0077cc;
+        color: white;
+        border-radius: 12px;
+        cursor: pointer;
+        transition: 0.25s;
+    }
+    button:hover { transform: scale(1.05); background: #005fa6; }
 
-        nav .logo {
-            font-size: 26px;
-            font-weight: 600;
-        }
+    /* ✅ การ์ดบทเรียน */
+    .chapters {
+        margin-top: 40px;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 25px;
+    }
+    .card {
+        width: 250px;
+        background: white;
+        padding: 25px;
+        border-radius: 15px;
+        box-shadow: 0px 5px 20px rgba(0,0,0,0.1);
+        cursor: pointer;
+        transition: 0.25s;
+    }
+    .card:hover { transform: translateY(-8px); }
+    .card h3 { color: #0077aa; }
 
-        nav ul {
-            list-style: none;
-            display: flex;
-            gap: 25px;
-        }
+    /* ✅ Tabs */
+    .tabs {
+        margin-top: 30px;
+        display: flex;
+        justify-content: center;
+        gap: 15px;
+    }
+    .tab-btn {
+        padding: 12px 25px;
+        background: #ddd;
+        border-radius: 10px;
+        cursor: pointer;
+        transition: 0.25s;
+    }
+    .tab-btn:hover { background: #ccc; }
+    .active { background: #0077cc !important; color: white; }
 
-        nav ul li a {
-            color: white;
-            text-decoration: none;
-            font-size: 18px;
-            transition: 0.2s;
-        }
-
-        nav ul li a:hover {
-            color: #ffcc66;
-        }
-
-        /* ✅ Header เท่ๆ Glassmorphism */
-        header {
-            height: 100vh;
-            background: linear-gradient(135deg, #ff6a88, #ff99ac);
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            text-align: center;
-            color: white;
-            padding: 0 20px;
-        }
-
-        header h1 {
-            font-size: 55px;
-            margin-bottom: 15px;
-            animation: fadeIn 1.5s ease;
-        }
-
-        header p {
-            font-size: 22px;
-            margin-bottom: 25px;
-        }
-
-        /* ✅ ปุ่มมีเอฟเฟกต์ */
-        header button {
-            padding: 12px 30px;
-            font-size: 20px;
-            background: white;
-            color: #ff5a7a;
-            border: none;
-            border-radius: 12px;
-            cursor: pointer;
-            transition: 0.25s;
-        }
-
-        header button:hover {
-            transform: scale(1.1);
-            background: #ffe4ec;
-        }
-
-        /* ✅ Section With Cards */
-        .content {
-            padding: 60px 20px;
-            text-align: center;
-        }
-
-        .cards {
-            margin-top: 40px;
-            display: flex;
-            justify-content: center;
-            flex-wrap: wrap;
-            gap: 25px;
-        }
-
-        .card {
-            width: 260px;
-            background: white;
-            padding: 25px;
-            border-radius: 15px;
-            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
-            transition: 0.3s;
-        }
-
-        .card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 10px 25px rgba(0,0,0,0.15);
-        }
-
-        .card h3 {
-            margin-bottom: 10px;
-            color: #ff5a7a;
-        }
-
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(30px); }
-            to   { opacity: 1; transform: translateY(0); }
-        }
-    </style>
+    .section { display: none; margin-top: 30px; }
+    .tab-show { display: block; }
+</style>
 </head>
 
 <body>
 
-    <nav>
-        <div class="logo">MyWebsite</div>
-        <ul>
-            <li><a href="#">หน้าแรก</a></li>
-            <li><a href="#">บริการ</a></li>
-            <li><a href="#">ติดต่อ</a></li>
-        </ul>
-    </nav>
+<!-- ✅ หน้าแรก -->
+<div id="home" class="page show">
+    <h1 style="font-size:50px; color:#333;">Physics Academy 🔭</h1>
+    <p style="font-size:20px; margin-top:10px;">รวมบทเรียนฟิสิกส์ เนื้อหา + คลิป + แบบฝึกหัด + เฉลย</p>
+    <button onclick="goPage('chapter')">เลือกบทเรียน</button>
+</div>
 
-    <header>
-        <h1>ยินดีต้อนรับ 🎉</h1>
-        <p>เว็บไซต์ใหม่สุดเท่ แบบมินิมอล + โมเดิร์น</p>
-        <button onclick="showMsg()">คลิกเลย!</button>
-    </header>
+<!-- ✅ หน้าเลือกบท -->
+<div id="chapter" class="page">
+    <h1 style="color:#333;">เลือกบทเรียนฟิสิกส์</h1>
 
-    <section class="content">
-        <h2>ฟีเจอร์ของเว็บไซต์</h2>
-
-        <div class="cards">
-            <div class="card">
-                <h3>เร็วกว่า</h3>
-                <p>โหลดไว ทำงานเร็วเพราะทุกอย่างอยู่ในไฟล์เดียว</p>
-            </div>
-
-            <div class="card">
-                <h3>ใช้ง่าย</h3>
-                <p>จัดโครงสร้างง่าย เหมาะสำหรับผู้เริ่มต้น</p>
-            </div>
-
-            <div class="card">
-                <h3>สวยงาม</h3>
-                <p>ดีไซน์โมเดิร์น ใช้ได้กับทุกอุปกรณ์</p>
-            </div>
+    <div class="chapters">
+        <div class="card" onclick="openLesson(1)">
+            <h3>บทที่ 1</h3>
+            <p>แรงและการเคลื่อนที่</p>
         </div>
-    </section>
 
-    <script>
-        function showMsg() {
-            alert("เว็บใหม่นี้เท่มากกก 😎🔥");
-        }
-    </script>
+        <div class="card" onclick="openLesson(2)">
+            <h3>บทที่ 2</h3>
+            <p>งานและพลังงาน</p>
+        </div>
+
+        <div class="card" onclick="openLesson(3)">
+            <h3>บทที่ 3</h3>
+            <p>ไฟฟ้า</p>
+        </div>
+    </div>
+
+    <button onclick="goPage('home')">⬅ กลับหน้าหลัก</button>
+</div>
+
+<!-- ✅ หน้าบทเรียนแบบมี Tabs -->
+<div id="lesson" class="page">
+    <h1 id="lessonTitle">บทเรียน</h1>
+
+    <div class="tabs">
+        <div class="tab-btn active" onclick="showTab('content')">เนื้อหา</div>
+        <div class="tab-btn" onclick="showTab('video')">คลิป</div>
+        <div class="tab-btn" onclick="showTab('ex')">โจทย์</div>
+        <div class="tab-btn" onclick="showTab('ans')">เฉลย</div>
+    </div>
+
+    <div id="content" class="section tab-show">
+        <h2>เนื้อหา</h2>
+        <p>คุณสามารถใส่เนื้อหาอธิบายบทเรียนไว้ตรงนี้ได้</p>
+    </div>
+
+    <div id="video" class="section">
+        <h2>คลิป</h2>
+        <p>วางลิงก์ YouTube ได้เลย เช่น:</p>
+        <p>📌 <i>ใส่วิดีโอภายหลังได้</i></p>
+    </div>
+
+    <div id="ex" class="section">
+        <h2>โจทย์</h2>
+        <p>เพิ่มโจทย์สอบไว้ตรงนี้</p>
+    </div>
+
+    <div id="ans" class="section">
+        <h2>เฉลย</h2>
+        <p>เพิ่มเฉลยของแต่ละข้อไว้ในส่วนนี้</p>
+    </div>
+
+    <button onclick="goPage('chapter')">⬅ กลับไปเลือกบท</button>
+</div>
+
+<script>
+/* ✅ เปลี่ยนหน้า (Page Switch) */
+function goPage(page) {
+    document.querySelectorAll(".page").forEach(p => p.classList.remove("show"));
+    document.getElementById(page).classList.add("show");
+}
+
+/* ✅ เปิดบทเรียนตามบท */
+function openLesson(num) {
+    document.getElementById("lessonTitle").innerText = "บทที่ " + num;
+    goPage("lesson");
+}
+
+/* ✅ เปลี่ยนแท็บ */
+function showTab(tab) {
+    document.querySelectorAll(".section").forEach(s => s.classList.remove("tab-show"));
+    document.querySelectorAll(".tab-btn").forEach(b => b.classList.remove("active"));
+
+    document.getElementById(tab).classList.add("tab-show");
+    event.target.classList.add("active");
+}
+</script>
 
 </body>
 </html>
