@@ -8,7 +8,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Prompt:wght@300;400;600&display=swap" rel="stylesheet">
 
 <style>
-/* ===================== ROOT STYLE ===================== */
+/* ===================== ROOT ===================== */
 :root{
   --blue1:#7ec9ff;
   --blue2:#3a7bd5;
@@ -20,7 +20,6 @@
   --text:#f5faff;
   --radius:22px;
   --shadow:0 20px 60px rgba(0,0,0,.35);
-  --glass:rgba(255,255,255,.08);
 }
 
 *{box-sizing:border-box;}
@@ -32,6 +31,7 @@ body{
   line-height:1.6;
   overflow-x:hidden;
 }
+
 
 /* ===================== NAV ===================== */
 .nav{
@@ -54,30 +54,6 @@ body{
 }
 .brand h1{ margin:0; font-size:22px; }
 
-/* ===================== HERO ===================== */
-.hero{
-  height:100vh;
-  display:flex; flex-direction:column; justify-content:center; align-items:center;
-  text-align:center;
-  padding:0 20px;
-  background:
-    radial-gradient(1200px 700px at 50% -10%, rgba(80,140,255,.35), transparent),
-    linear-gradient(180deg,var(--dark1),var(--dark2));
-}
-.hero h1{
-  font-size:54px;
-  margin:0 0 18px;
-  font-weight:700;
-  background:linear-gradient(90deg,#ffffff,#9ecbff,#7ec9ff);
-  -webkit-background-clip:text;
-  color:transparent;
-}
-.hero p{
-  max-width:680px;
-  font-size:20px;
-  color:#d5dff0;
-  margin-bottom:36px;
-}
 .btn-big{
   padding:16px 32px;
   border-radius:16px;
@@ -92,7 +68,71 @@ body{
 }
 .btn-big:hover{ transform:translateY(-4px); }
 
-/* ===================== PROMOTION BANNER ===================== */
+
+/* ===================== HERO ===================== */
+.hero {
+  position: relative;
+  text-align: center;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 0 20px;
+  background:
+    radial-gradient(1200px 700px at 50% -10%, rgba(80,140,255,.32), transparent),
+    linear-gradient(180deg, var(--dark1), var(--dark2));
+}
+
+.hero h1{
+  font-size:54px;
+  margin:0 0 18px;
+  font-weight:700;
+  background:linear-gradient(90deg,#ffffff,#9ecbff,#7ec9ff);
+  -webkit-background-clip:text;
+  color:transparent;
+}
+
+.hero p{
+  max-width:680px;
+  font-size:20px;
+  color:#d5dff0;
+  margin-bottom:36px;
+}
+
+/* photo */
+.hero-photo-wrapper {
+  position: relative;
+  width: 230px;
+  height: 230px;
+  margin-bottom: 30px;
+}
+
+.hero-photo {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 26px;
+  border: 2px solid rgba(255,255,255,.1);
+  box-shadow:0 20px 40px rgba(0,0,0,.55), 0 0 60px rgba(120,180,255,.55);
+  position: relative;
+  z-index: 3;
+}
+
+.hero-photo-glow {
+  position: absolute;
+  top: 8%;
+  left: 8%;
+  right: 8%;
+  bottom: 8%;
+  border-radius: 30px;
+  background: radial-gradient(circle, rgba(110,170,255,.45), rgba(110,170,255,0));
+  filter: blur(35px);
+  z-index: 1;
+}
+
+
+/* ===================== PROMOTION ===================== */
 .promo{
   max-width:1200px;
   margin:60px auto 20px;
@@ -106,7 +146,8 @@ body{
   box-shadow:0 20px 60px rgba(0,0,0,.55);
 }
 
-.promo-img img{
+/* ✅ Video styling */
+.promo-video{
   width:100%;
   display:block;
   border-radius:24px;
@@ -152,12 +193,12 @@ body{
   box-shadow:0 8px 20px rgba(80,140,255,.4);
   transition:.25s;
 }
-
 .promo-btn:hover{
   transform:translateY(-3px);
 }
 
-/* ===================== SECTION TEMPLATE ===================== */
+
+/* ===================== SECTION ===================== */
 .section{
   max-width:1200px;
   margin:70px auto 50px;
@@ -172,7 +213,8 @@ body{
   margin-bottom:28px;
 }
 
-/* ===================== PREMIUM CARDS ===================== */
+
+/* ===================== CARD ===================== */
 .grid{
   display:grid;
   gap:30px;
@@ -189,47 +231,27 @@ body{
   overflow:hidden;
   transition:.25s;
 }
-.card::before{
-  content:"";
-  position:absolute;
-  top:-20%; left:-20%;
-  width:200%; height:200%;
-  background:radial-gradient(circle at top left, rgba(92,158,255,.18), transparent 60%);
-  opacity:0;
-  transition:.25s;
-}
 .card:hover{
   transform:translateY(-8px);
 }
-.card:hover::before{
-  opacity:1;
-}
-.card h3{
-  margin:0 0 10px;
-  font-size:22px;
-}
-.card p{
-  color:var(--muted);
-  margin:0 0 20px;
-}
-.more{
-  color:var(--blue1);
-  font-weight:600;
-}
+.card h3{ margin:0 0 10px; font-size:22px; }
+.card p{ color:var(--muted); margin:0 0 20px; }
+.more{ color:var(--blue1); font-weight:600; }
 
-/* ===================== CONTENT BLOCKS ===================== */
+
+/* ===================== BLOCK ===================== */
 .block{
   background:linear-gradient(180deg,#111820,#0c1016);
   padding:30px;
   border-radius:var(--radius);
   border:1px solid rgba(255,255,255,.07);
   margin-bottom:28px;
-  box-shadow:0px 8px 24px rgba(0,0,0,.4);
 }
 .block h3{
   margin-top:0;
   margin-bottom:14px;
 }
+
 
 /* ===================== FOOTER ===================== */
 footer{
@@ -253,28 +275,45 @@ footer{
   <button class="btn-big" style="padding:10px 22px; font-size:15px;" onclick="document.getElementById('chapters').scrollIntoView({behavior:'smooth'})">บทเรียน</button>
 </nav>
 
+
 <!-- HERO -->
 <header class="hero">
-  <h1>ฟิสิกส์เข้าใจง่ายกว่าเดิม</h1>
-  <p>สรุปเนื้อหา + โจทย์ + เฉลยในดีไซน์ใหม่สุดพรีเมียม ผสมโทนฟ้าพาสเทลกับความแพงแบบ Netflix</p>
-  <button class="btn-big" onclick="document.getElementById('chapters').scrollIntoView({behavior:'smooth'})">เริ่มเรียนเลย</button>
+
+  <div class="hero-photo-wrapper">
+    <div class="hero-photo-glow"></div>
+
+    <!-- ✅ รูปโปรไฟล์ -->
+    <img src="S__45735949.jpg" class="hero-photo" alt="profile" />
+  </div>
+
+  <h1>เปลี่ยนฟิสิกส์ที่เคยยาก ให้เป็นความรู้ที่จับต้องได้</h1>
+  <p>ไม่ต้องกลัวฟิสิกส์ กลัวคะแนนสอบพอ</p>
+
+  <button class="btn-big" onclick="document.getElementById('chapters').scrollIntoView({behavior:'smooth'})">
+    เริ่มเรียนเลย
+  </button>
 </header>
+
 
 <!-- PROMOTION BANNER -->
 <section class="promo">
   <div class="promo-img">
-    <!-- ✅ เปลี่ยน URL รูปที่นี่ -->
-    <img src="https://i.imgur.com/59vQn3O.jpeg" alt="Physics Promo">
+
+    <!-- ✅ วิดีโอโปรโมท -->
+    <video autoplay muted loop playsinline class="promo-video">
+      <source src="คลิปโปรโมท.mp4" type="video/mp4">
+    </video>
   </div>
 
   <div class="promo-box">
-    <h2>🔥 โปรโมชั่นสุดคุ้ม! ลด 50%</h2>
-    <p>สมัครคอร์สฟิสิกส์วันนี้ รับสรุปเนื้อหา + ใบงาน + แบบฝึกหัด มูลค่า 1,290 บาท ฟรี!</p>
+    <h2>🔥 โปรโมชั่นสุดคุ้ม!</h2>
+    <p>เรียนฟิสิกส์วันนี้ รู้เรื่องวันไหน</p>
     <button class="promo-btn" onclick="document.getElementById('chapters').scrollIntoView({behavior:'smooth'})">ดูบทเรียนทั้งหมด</button>
   </div>
 </section>
 
-<!-- CHAPTERS SECTION -->
+
+<!-- CHAPTERS -->
 <section class="section" id="chapters">
   <h2>บทเรียนฟิสิกส์ทั้งหมด</h2>
   <p class="section-desc">เลือกหัวข้อเพื่อเลื่อนไปยังเนื้อหาแบบพรีเมียม</p>
@@ -300,7 +339,8 @@ footer{
   </div>
 </section>
 
-<!-- LESSONS -->
+
+<!-- LESSON 1 -->
 <section class="section" id="lesson1">
   <h2>บทที่ 1 · แรงและการเคลื่อนที่</h2>
 
@@ -309,7 +349,7 @@ footer{
     <ul>
       <li>แรงคือปริมาณที่ทำให้วัตถุเปลี่ยนความเร็ว</li>
       <li>แรงลัพธ์ = ผลรวมเวกเตอร์ของแรงทั้งหมด</li>
-      <li>กฎนิวตันทั้ง 3 ข้อ</li>
+      <li>กฎนิวตัน 3 ข้อ</li>
     </ul>
   </div>
 
@@ -325,11 +365,13 @@ footer{
     <h3>เฉลย</h3>
     <ul>
       <li>a = 5 m/s²</li>
-      <li>แรงลัพธ์คือผลรวมเวกเตอร์</li>
+      <li>ผลรวมเวกเตอร์ทั้งหมดที่กระทำบนวัตถุ</li>
     </ul>
   </div>
 </section>
 
+
+<!-- LESSON 2 -->
 <section class="section" id="lesson2">
   <h2>บทที่ 2 · งานและพลังงาน</h2>
 
@@ -339,6 +381,7 @@ footer{
       <li>W = Fd</li>
       <li>PE = mgh</li>
       <li>KE = ½mv²</li>
+      <li>หลักอนุรักษ์พลังงาน</li>
     </ul>
   </div>
 
@@ -359,6 +402,8 @@ footer{
   </div>
 </section>
 
+
+<!-- LESSON 3 -->
 <section class="section" id="lesson3">
   <h2>บทที่ 3 · ไฟฟ้า</h2>
 
@@ -366,8 +411,8 @@ footer{
     <h3>เนื้อหา</h3>
     <ul>
       <li>ประจุไฟฟ้า Q</li>
-      <li>กระแส I = Q/t</li>
-      <li>โอห์ม V = IR</li>
+      <li>I = Q/t</li>
+      <li>V = IR</li>
     </ul>
   </div>
 
@@ -388,10 +433,10 @@ footer{
   </div>
 </section>
 
+
 <footer>
-  © 2025 Pixture-Academy · Call Center 099-619-7722
+  © 2025 Pixture-Academy · Call Center 099-6197722
 </footer>
 
 </body>
 </html>
-
